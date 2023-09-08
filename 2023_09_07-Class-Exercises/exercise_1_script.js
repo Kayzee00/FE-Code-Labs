@@ -1,4 +1,5 @@
-//Given the code snippet. Explain what scopes are in this current context of the code.//
+//Given the code snippet. Explain what scopes are in this current context of the code.
+//https://www.codelabsdash.com/lessons/frontend/javascript/essentional-concepts
 
 function outerFunction() {
   let outerVar = "I'm outside!"; // outerVar is local scope
