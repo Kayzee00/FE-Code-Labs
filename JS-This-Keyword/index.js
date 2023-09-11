@@ -1,3 +1,6 @@
+/* JAVASCRIPT 'THIS' KEYWORD EXPLAINED SIMPLY */
+// https://www.youtube.com/watch?v=cwChC4BQF0Q&list=PLj9uZuEI0pcyYQaN-n3Qj5HboPZYMDuzB&index=2 //
+
 //'this' keyword is used to reference the object that is executing the current running function.
 
 //function test() {
@@ -63,4 +66,4 @@ function user(name) {
 }
 
 const devsage = new user("DevSage");
-const codingphase = new user("CodingPhase");
+const codingphase = new user("CodingPhase"); // whenever you create a new object using the 'new' keyword, the 'this' is going to refer to that specific object you just created. //
