@@ -10,17 +10,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Design Patterns</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" defer></script>
-  <script src="facade-pattern.js"></script>
-  <style>
-    .main-content {
-      text-align: center;
-    }
-  </style>
+  <script src="observer-pattern.js"></script>
 </head>
 <body>
-  <div class="main-content">
-    <h1>Design Patterns</h1>
-  </div>
+  <div id="count">0</div>
+
+  <button id="inc">+</button>
+  <button id="dec">-</button>
+
+  <script defer>
+    function createObservable() {
+      const observer = createObservable();
+
+    function callbackFn(count){
+      document.getElementById('count').innerText = count;
+    }
+    }
+
+
+    observer.subscribe(callbackFn);
+
+    document.getElementById('inc').addEventListener('click', function(){
+      observer.broadcast(
+        parseInt(document.getElementById('count').innerText, 10) + 1
+      );
+    });
+
+    document.getElementById('dec').addEventListener('click', function(){
+      observer.broadcast(
+        parseInt(document.getElementById('count').innerText, 10) - 1
+      );
+    });
+
+  </script>
 </body>
 </html>
