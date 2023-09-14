@@ -10,7 +10,6 @@ hanSolo.name = "Han Solo";
 hanSolo.hp = 80;
 hanSolo.mp = 20;
 hanSolo.items = ["Blaster"];
-
 const darthVader = player;
 
 console.log(hanSolo);
