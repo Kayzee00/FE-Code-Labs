@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning How to Make a Scrolling Progress Bar!!!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    body, .jumbotron {
+      padding: 30px;
+    }
+    .content {
+      background: #FFF;
+      padding: 50px;
+      font-size: 19px;
+      line-height: 1.5;
+      min-height: 3000px;
+    }
+    body{
+      background: #EFEFEF;
+    }
+    .scroll-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 8px;
+      background: #1CE;
+      transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) width;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-line"></div>
+
+  <div class="container">
+    <div class="content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptas voluptates veniam assumenda. Autem, enim. Corrupti recusandae, repellendus, molestiae, doloremque nostrum tenetur voluptatibus qui expedita praesentium cupiditate nihil a enim.
+    </div>
+  </div>
+
+<!-- START JAVASCRIPT!!! -->
+<script>
+  const scrollLine = document.querySelector('.scroll-line');
+
+  function fillScrollLine() {
+    const windowHeight = window.innerHeight;
+    const fullHeight = document.body.clientHeight;
+    const scrolled = window.scrollY;
+    const percentScrolled = (scrolled / (fullHeight - windowHeight)) * 100;
+
+    scrollLine.style.width = percentScrolled + '%';
+    // can also write it out like this (your preference.):
+    //scrollLine.style.width = `${percentScrolled}%`;
+  }
+
+  window.addEventListener('scroll',debounce(fillScrollLine));
+
+  function debounce(func, wait = 15, immediate) {
+    var timeout;
+    return function() {
+      var context = this, args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if(callNow) func.apply(context, args);
+    };
+  }
+</script>
+</body>
+</html>
