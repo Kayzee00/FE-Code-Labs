@@ -21,8 +21,10 @@ const body = document.body;
     
     const bookmarksList = document.querySelector('.bookmarks-list');
     const bookmarkForm = document.querySelector('.bookmark-form');
-    const bookmarkInput =document.querySelector('input[type=text');
-    const bookmarks = [];
+    const bookmarkInput = bookmarkForm.querySelector('input[type=text');
+    const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+
+    fillBookmarksList(bookmarks);
 
     function createBookmark(e) {
       e.preventDefault();
@@ -34,6 +36,8 @@ const body = document.body;
       };
       bookmarks.push(bookmark);
       fillBookmarksList(bookmarks);
+      storeBookmarks(bookmarks);
+      bookmarkForm.reset();
 
       console.table(bookmarks);
 
@@ -46,18 +50,19 @@ const body = document.body;
       //bookmark.href = '#';
       //bookmark.target = '_blank';
       //bookmarksList.appendChild(bookmark);
-
-      bookmarkForm.reset();
     }
 
     function fillBookmarksList(bookmarks = []) {
       const bookmarksHtml = bookmarks.map((bookmark) => {
         return`
         <a href="#" class="bookmark">
-          ${bookmarks[i].title}
+          ${bookmarks.title}
         </a>
         `;
-      })
+      }).join(''); 
+      bookmarksList.innerHTML = bookmarksHtml;
+
+      // this is a little cleaner to read as opposed to the for loop.
 
 
 
@@ -70,8 +75,12 @@ const body = document.body;
         //`;
       //}
 
-      console.log(bookmarksHtml);
-      bookmarksList.innerHTML = bookmarksHtml;
+      //console.log(bookmarksHtml);
     }
-    
+
+    function storeBookmarks(bookmarks = []) {
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    }
+
     bookmarkForm.addEventListener('submit', createBookmark);
+    
